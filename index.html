@@ -25,8 +25,22 @@
     <script>
         function getDevices(){
             navigator.usb.requestDevice({filters:[]}).then(function(device){
-            console.log(device);
+                console.log(device.vendorId);
+                console.log(device);
             });
+        }
+
+        function requestDevice(){
+
+            var _vendorId = document.getElementById('vendorId').value; 
+            console.log(_vendorId);
+            navigator.usb.requestDevice({ filters: [{ vendorId: _vendorId }] })
+            .then(device => {
+                console.log(device);
+                console.log(device.productName);      // "Arduino Micro"
+                console.log(device.manufacturerName); // "Arduino LLC"
+            })
+            .catch(error => { console.error(error); });
         }
     </script>
     <div class="container-fluid">
@@ -44,6 +58,12 @@
                     <p>
                         <a class="btn btn-primary btn-large" href="#" onclick="getDevices()" >getDevices()</a>
                     </p>
+
+                    <p>
+                        <input id='vendorId' placeholder="2341"/> 
+                        <a class="btn btn-primary btn-large" href="#" onclick="requestDevice()" >requestDevice()</a>
+                    </p>
+
                 </div>
             </div>
         </div>
