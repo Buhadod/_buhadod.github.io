@@ -27,14 +27,14 @@
            alert("hello world!");
         }
 
-        function getDevices(){
+        function requestDevices(){
             navigator.usb.requestDevice({filters:[]}).then(function(device){
                 console.log(device.vendorId);
                 console.log(device);
             });
         }
 
-        function requestDevice(){
+        function requestDeviceByVendor(){
 
             var _vendorId = document.getElementById('vendorId').value; 
             console.log(_vendorId);
@@ -44,6 +44,25 @@
                 console.log(device.productName);      // "Arduino Micro"
                 console.log(device.manufacturerName); // "Arduino LLC"
             })
+            .catch(error => { console.error(error); });
+        }
+
+        function getDevices(){
+            navigator.usb.getDevices()
+                .then(devices => {
+                console.log("Total devices: " + devices.length);
+                devices.forEach(device => {
+                    console.log("Product name: " + device.productName + ", serial number " + device.serialNumber);
+                });
+                });
+        }
+
+        function requestBluetooth(){
+            navigator.bluetooth.requestDevice({
+            acceptAllDevices: true,
+            optionalServices: ['battery_service'] // Required to access service later.
+            })
+            .then(device => { console.log(device); })
             .catch(error => { console.error(error); });
         }
     </script>
@@ -64,14 +83,24 @@
                     </p>
 
                     <p>
-                        <a class="btn btn-primary btn-large" href="#" onclick="getDevices()" >getDevices()</a>
+                        <a class="btn btn-primary btn-large" href="#" onclick="requestDevices()" >requestDevice()</a>
                     </p>
 
                     <p>
                         <input id='vendorId' placeholder="2341"/> 
-                        <a class="btn btn-primary btn-large" href="#" onclick="requestDevice()" >requestDevice()</a>
+                        <a class="btn btn-primary btn-large" href="#" onclick="requestDevicesByVendor()" >requestDevice() via Vendor</a>
                     </p>
-
+                    
+                    <p>
+                        <a class="btn btn-primary btn-large" href="#" onclick="getDevices()" >getDevices()</a>
+                    </p>
+                    <p>
+                        <a href="download.php?path=sample.svg" >Download !!</a>
+                    </p>
+                    <p>
+                        <a class="btn btn-primary btn-large" href="#" onclick="requestBluetooth()" >requestBluetooth()</a>
+                    </p>
+                    
                 </div>
             </div>
         </div>
