@@ -10,12 +10,7 @@
 
     <title>Hello, world!</title>
   </head>
-  <body >
-
-    <script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous"></script>
+  <body>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -70,14 +65,6 @@
             .then(device => { console.log(device); })
             .catch(error => { console.error(error); });
         }
-
-        function scrollIframe(){
-            var myIframe = document.getElementById('iframe');
-            myIframe.onload = function () {
-                myIframe.contentWindow.scrollTo(0,100);
-                console.log("scrolled");
-            }
-        }
     </script>
     <div class="container-fluid">
         <div class="row">
@@ -85,24 +72,38 @@
 
                 
                 <div class="jumbotron">
-                    <p>
-                        <iframe id='iframe' allowpaymentrequest allow="usb; fullscreen" scrolling="no"  style='margin-top:-65px;height:100px;width:100%;border:0px solid #000' src='https://larsgk.github.io/webusb-tester/' ></iframe>
-                    </p>
-                    <!-- <p>
-                        <iframe id='iframe' allowpaymentrequest allow="usb; fullscreen" scrolling="no"  style='margin-top:-81;height:100px;width:100%;border:0px solid #000' src='https://larsgk.github.io/webusb-tester/' ></iframe>
-                    </p> -->
                     <h2>
                         Hello, world!
                     </h2>
+                    <p>
+                        This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
+                    </p>
+                    <p>
+                        <a class="btn btn-primary btn-large" href="#" onclick="showAlert()" >alert()</a>
+                    </p>
 
                     <p>
                         <a class="btn btn-primary btn-large" href="#" onclick="requestDevices()" >requestDevice()</a>
+                    </p>
+
+                    <p>
+                        <input id='vendorId' placeholder="2341"/> 
+                        <a class="btn btn-primary btn-large" href="#" onclick="requestDevicesByVendor()" >requestDevice() via Vendor</a>
                     </p>
                     
                     <p>
                         <a class="btn btn-primary btn-large" href="#" onclick="getDevices()" >getDevices()</a>
                     </p>
-                   
+                    <p>
+                        <a href="download.php?path=sample.svg" >Download !!</a>
+                    </p>
+                    <p>
+                        <a class="btn btn-primary btn-large" href="#" onclick="requestBluetooth()" >requestBluetooth()</a>
+                    </p>
+                    
+                    <p>
+                        <iframe  allowpaymentrequest allow="usb; fullscreen" style='border:1px solid #000' src='request.html' ></iframe>
+                    </p>
                 </div>
             </div>
         </div>
