@@ -12,48 +12,24 @@
   <body>
 
     <script>
-        function showAlert(){
-           alert("hello world!");
-        }
 
         function requestDevices(){
             navigator.usb.requestDevice({filters:[]}).then(function(device){
-                console.log(device.vendorId);
-                console.log(device);
+                console.log(device.productName);
+
             });
-        }
-
-        function requestDeviceByVendor(){
-
-            var _vendorId = document.getElementById('vendorId').value; 
-            console.log(_vendorId);
-            navigator.usb.requestDevice({ filters: [{ vendorId: _vendorId }] })
-            .then(device => {
-                console.log(device);
-                console.log(device.productName);      // "Arduino Micro"
-                console.log(device.manufacturerName); // "Arduino LLC"
-            })
-            .catch(error => { console.error(error); });
         }
 
         function getDevices(){
             navigator.usb.getDevices()
                 .then(devices => {
-                console.log("Total devices: " + devices.length);
+                console.log("Total devices: " + devices.length+" @" +document.domain);
                 devices.forEach(device => {
-                    console.log("Product name: " + device.productName + ", serial number " + device.serialNumber);
+                    console.log("Product name: " + device.productName);
                 });
                 });
         }
 
-        function requestBluetooth(){
-            navigator.bluetooth.requestDevice({
-            acceptAllDevices: true,
-            optionalServices: ['battery_service'] // Required to access service later.
-            })
-            .then(device => { console.log(device); })
-            .catch(error => { console.error(error); });
-        }
     </script>
     <div class="container-fluid">
         <div class="row">
