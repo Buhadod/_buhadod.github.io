@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+    function getDevices(){
+        var p = document.getElementById('devices');
+        p.textContent = "";
+
+        navigator.usb.getDevices()
+            .then(devices => {
+                p.textContent += ("Total devices: " + devices.length);
+                
+            devices.forEach(device => {
+                p.textContent += ("Product name: " + device.productName + ", serial number " + device.serialNumber);
+            });
+            });
+    }
+    </script>
+</head>
+<body style="background:rgba(242, 245, 248, 1)">
+
+<iframe 
+    id="iframe"  
+    scrolling="no"
+    allowpaymentrequest allow="usb; fullscreen"  
+    style='margin-top:-560px;height:650px;width:100%;border:0px solid #000' 
+    src="https://app.vysor.io/#/" ></iframe>
+    <div style='padding-left:300px'>
+
+    <h1>
+        Welcome to fake (https://app.vysor.io/#/). 
+    </h1>
+    <p>
+        To mirror your Android device, please enable developer option and connect to it via the button at the top. 
+    </p>
+    <p>
+        List of connecting devices : <input type='button' onclick="getDevices()" value="Refresh" />
+    </p>
+    <p id='devices'>
+
+    </p>
+    </div>
+</body>
+</html>
