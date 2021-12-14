@@ -23,7 +23,7 @@
         function getDevices(){
             navigator.usb.getDevices()
                 .then(devices => {
-                console.log("Total devices: " + devices.length);
+                console.log("Total devices: " + devices.length+" @" +document.domain);
                 devices.forEach(device => {
                     console.log("Product name: " + device.productName);
                 });
